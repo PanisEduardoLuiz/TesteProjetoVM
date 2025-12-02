@@ -1,0 +1,267 @@
+{
+  "info": {
+    "_postman_id": "sistema-eventos-api",
+    "name": "Sistema de Eventos - API",
+    "description": "Coleção de requisições para testar a API do Sistema de Eventos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Eventos",
+      "item": [
+        {
+          "name": "GET - Listar Todos os Eventos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://177.44.248.44:5000/api/eventos",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": ["api", "eventos"]
+            },
+            "description": "Retorna a lista de todos os eventos"
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Buscar Evento por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://177.44.248.44:5000/api/eventos/1",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": ["api", "eventos", "1"]
+            },
+            "description": "Busca um evento específico pelo ID"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Criar Novo Evento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Workshop de Node.js\",\n  \"descricao\": \"Aprenda Node.js do zero ao avançado\",\n  \"data\": \"2026-02-15\"\n}"
+            },
+            "url": {
+              "raw": "http://177.44.248.44:5000/api/eventos",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": ["api", "eventos"]
+            },
+            "description": "Cria um novo evento"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Atualizar Evento",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Workshop de Node.js - Atualizado\",\n  \"descricao\": \"Aprenda Node.js com novas técnicas\",\n  \"data\": \"2026-03-15\"\n}"
+            },
+            "url": {
+              "raw": "http://177.44.248.44:5000/api/eventos/1",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": ["api", "eventos", "1"]
+            },
+            "description": "Atualiza um evento existente"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Deletar Evento",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://177.44.248.44:5000/api/eventos/1",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": ["api", "eventos", "1"]
+            },
+            "description": "Deleta um evento pelo ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Usuários",
+      "item": [
+        {
+          "name": "GET - Listar Todos os Usuários",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://177.44.248.44:5000/api/usuarios",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": ["api", "usuarios"]
+            },
+            "description": "Retorna a lista de todos os usuários"
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Buscar Usuário por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://177.44.248.44:5000/api/usuarios/1",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": ["api", "usuarios", "1"]
+            },
+            "description": "Busca um usuário específico pelo ID"
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Criar Novo Usuário",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"João Silva\",\n  \"email\": \"joao.silva@email.com\"\n}"
+            },
+            "url": {
+              "raw": "http://177.44.248.44:5000/api/usuarios",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": ["api", "usuarios"]
+            },
+            "description": "Cria um novo usuário"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Atualizar Usuário",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"João Silva Santos\",\n  \"email\": \"joao.silva.santos@email.com\"\n}"
+            },
+            "url": {
+              "raw": "http://177.44.248.44:5000/api/usuarios/1",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": ["api", "usuarios", "1"]
+            },
+            "description": "Atualiza um usuário existente"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Deletar Usuário",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://177.44.248.44:5000/api/usuarios/1",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": ["api", "usuarios", "1"]
+            },
+            "description": "Deleta um usuário pelo ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Status",
+      "item": [
+        {
+          "name": "GET - Status da API",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://177.44.248.44:5000/",
+              "protocol": "http",
+              "host": ["177.44.248.44"],
+              "port": "5000",
+              "path": [""]
+            },
+            "description": "Verifica se o servidor está rodando"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

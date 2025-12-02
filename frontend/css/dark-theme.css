@@ -1,0 +1,9 @@
+/* dark-theme placeholder */
+:root{
+    --bg-color: #121212;
+    --text-color: #e6e6e6;
+    --primary-color: #4b9ef6;
+}
+body{ background: var(--bg-color); color: var(--text-color); }
+.header, .main-header{ background: #1a1a1a; }
+/* Ajuste conforme necessário */

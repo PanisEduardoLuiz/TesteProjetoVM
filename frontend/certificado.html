@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Certificados - Validação</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <header class="main-header">
+        <div class="header-content">
+            <h2 class="logo">Sistema de Eventos</h2>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li id="user-greeting" class="hidden" style="color: var(--primary-color); font-weight: 600;"></li>
+                    
+                    <li><a href="eventos.html">Eventos</a></li> 
+                    
+                    <li id="minhas-inscricoes-link" class="hidden"><a href="minhas_inscricoes.html">Minhas Inscrições</a></li>
+                    <li id="checkin-link" class="hidden"><a href="#" id="open-checkin-admin-modal">Check-in</a></li> 
+                    
+                    <li id="certificados-link" class="hidden"><a href="certificado.html" class="active">Certificados</a></li>
+
+                    <li id="admin-link" class="hidden"><a href="admin.html">Área Administrador</a></li>
+
+                    <li id="login-link"><a href="#" id="open-login-modal-btn">Entrar</a></li>
+                    <li id="register-link"><a href="cadastro.html">Cadastrar</a></li>
+                    <li id="logout-link" class="hidden"><a href="#">Sair</a></li>
+                </ul>
+            </nav>
+
+            <div class="theme-switcher-container">
+                <label class="switch">
+                    <input type="checkbox" id="theme-switcher">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 100px;">
+        <div class="form-container" style="max-width: 600px;">
+            <h1>Validar Certificado</h1>
+            <p>Insira o código de autenticação recebido por e-mail para validar seu certificado e liberar o download.</p>
+            
+            <form id="certificate-validation-form">
+                <div class="input-group">
+                    <input type="text" id="auth-code-input" placeholder="Digite o Código de Autenticação (Ex: CERT-A1B2C3D4)" required>
+                </div>
+                
+                <button type="submit">Validar e Buscar</button>
+            </form>
+            
+            <hr style="margin: 30px 0;">
+            
+            <div id="certificate-result" class="hidden" style="text-align: center;">
+                
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">Certificado Válido!</h3>
+                
+                <p id="certificate-event-name" style="margin-bottom: 20px;"></p>
+                
+                <a id="download-link" href="#" target="_blank" style="padding: 12px 25px; background-color: var(--primary-color); color: #1e1e1e; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">
+                    Baixar Certificado
+                </a>
+
+            </div>
+            
+            <p id="validation-message" style="margin-top: 20px; color: #dc3545;"></p>
+
+        </div>
+    </main>
+    
+    <div id="login-modal" class="modal-overlay hidden">
+        <div class="modal-content form-container">
+            <span class="close-modal login-close-modal">&times;</span>
+            <form action="#" id="login-form">
+                <h1>Entrar</h1>
+                <div class="input-group">
+                    <input type="email" id="login-email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="login-password" placeholder="Senha" required>
+                </div>
+                <a href="#">Esqueceu sua senha?</a>
+                <button type="submit">Entrar</button>
+                <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            </form>
+        </div>
+    </div>
+    
+    <script src="Logicafrontend.js"></script>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Conexão - Frontend ↔ Backend</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .test-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-icon {
+            font-size: 24px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-success {
+            background-color: #48bb78;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #38a169;
+        }
+        
+        .btn-danger {
+            background-color: #f56565;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #e53e3e;
+        }
+        
+        .response {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .response-success {
+            border-left: 4px solid #48bb78;
+            background-color: #f0fff4;
+        }
+        
+        .response-error {
+            border-left: 4px solid #f56565;
+            background-color: #fff5f5;
+            color: #c53030;
+        }
+        
+        .response-loading {
+            color: #667eea;
+            font-style: italic;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .badge-success {
+            background-color: #c6f6d5;
+            color: #22543d;
+        }
+        
+        .badge-error {
+            background-color: #fed7d7;
+            color: #742a2a;
+        }
+        
+        .badge-warning {
+            background-color: #feebc8;
+            color: #7c2d12;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        input[type="text"], textarea {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        
+        textarea {
+            min-height: 80px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .summary {
+            background-color: #edf2f7;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        .summary h2 {
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .summary-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .summary-icon {
+            font-size: 20px;
+            margin-right: 10px;
+            width: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste de Conexão - Frontend ↔ Backend</h1>
+        
+        <!-- Teste 1: Verificar Backend Online -->
+        <div class="test-section">
+            <div class="test-title">
+                <span class="status-icon">🔗</span>
+                Teste 1: Backend Online?
+            </div>
+            <p>Verifica se o backend está rodando em http://177.44.248.44:5000</p>
+            <button class="btn-primary" onclick="testarBackendOnline()">Testar Conexão</button>
+            <div id="response-backend" class="response" style="display:none;"></div>
+        </div>
+        
+        <!-- Teste 2: GET Eventos -->
+        <div class="test-section">
+            <div class="test-title">
+                <span class="status-icon">📋</span>
+                Teste 2: Listar Eventos (GET)
+            </div>
+            <p>Busca todos os eventos da API</p>
+            <button class="btn-primary" onclick="testarGetEventos()">GET /api/eventos</button>
+            <div id="response-eventos" class="response" style="display:none;"></div>
+        </div>
+        
+        <!-- Teste 3: POST Evento -->
+        <div class="test-section">
+            <div class="test-title">
+                <span class="status-icon">➕</span>
+                Teste 3: Criar Novo Evento (POST)
+            </div>
+            <p>Cria um novo evento na API</p>
+            <div class="input-group">
+                <input type="text" id="evento-nome" placeholder="Nome do evento" value="Teste Frontend">
+                <input type="text" id="evento-data" placeholder="Data (YYYY-MM-DD)" value="2026-02-01">
+            </div>
+            <textarea id="evento-descricao" placeholder="Descrição do evento">Evento criado via teste de frontend</textarea>
+            <button class="btn-success" onclick="testarPostEvento()">POST /api/eventos</button>
+            <div id="response-post-evento" class="response" style="display:none;"></div>
+        </div>
+        
+        <!-- Teste 4: GET Usuários -->
+        <div class="test-section">
+            <div class="test-title">
+                <span class="status-icon">👥</span>
+                Teste 4: Listar Usuários (GET)
+            </div>
+            <p>Busca todos os usuários da API</p>
+            <button class="btn-primary" onclick="testarGetUsuarios()">GET /api/usuarios</button>
+            <div id="response-usuarios" class="response" style="display:none;"></div>
+        </div>
+        
+        <!-- Teste 5: POST Usuário -->
+        <div class="test-section">
+            <div class="test-title">
+                <span class="status-icon">➕</span>
+                Teste 5: Criar Novo Usuário (POST)
+            </div>
+            <p>Cria um novo usuário na API</p>
+            <div class="input-group">
+                <input type="text" id="usuario-nome" placeholder="Nome" value="Teste Frontend">
+                <input type="email" id="usuario-email" placeholder="Email" value="teste@frontend.com">
+            </div>
+            <button class="btn-success" onclick="testarPostUsuario()">POST /api/usuarios</button>
+            <div id="response-post-usuario" class="response" style="display:none;"></div>
+        </div>
+        
+        <!-- Resumo -->
+        <div class="summary">
+            <h2>📊 Resumo dos Testes</h2>
+            <div class="summary-item">
+                <span class="summary-icon">✓</span>
+                <span>Se todos os testes passarem, o frontend está conectado corretamente ao backend</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-icon">⚠️</span>
+                <span>Se algum teste falhar, verifique se o backend está rodando em http://177.44.248.44:5000</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-icon">🔧</span>
+                <span>Abra o Console (F12) para ver detalhes de erro</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Ajustado para a porta correta do backend (3000)
+    const API_BASE = 'http://177.44.248.44:3000';
+        
+        function mostrarResposta(elementId, dados, sucesso = true) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = 'response ' + (sucesso ? 'response-success' : 'response-error');
+            element.innerHTML = '<pre>' + JSON.stringify(dados, null, 2) + '</pre>';
+        }
+        
+        function mostrarCarregando(elementId) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = 'response response-loading';
+            element.innerHTML = '⏳ Carregando...';
+        }
+        
+        async function testarBackendOnline() {
+            mostrarCarregando('response-backend');
+            try {
+                const response = await fetch(`${API_BASE}/`);
+                const text = await response.text();
+                mostrarResposta('response-backend', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    mensagem: '✅ Backend está ONLINE e respondendo!',
+                    resposta: text.substring(0, 200) + '...'
+                }, true);
+            } catch (error) {
+                mostrarResposta('response-backend', {
+                    erro: '❌ Backend OFFLINE ou inacessível',
+                    detalhes: error.message,
+                    dica: 'Certifique-se de que o servidor está rodando com: npm start (pasta backend)'
+                }, false);
+                console.error(error);
+            }
+        }
+        
+        async function testarGetEventos() {
+            mostrarCarregando('response-eventos');
+            try {
+                const response = await fetch(`${API_BASE}/api/eventos`);
+                const data = await response.json();
+                mostrarResposta('response-eventos', data, response.ok);
+            } catch (error) {
+                mostrarResposta('response-eventos', {
+                    erro: error.message,
+                    dica: 'Verifique se a rota /api/eventos existe no backend'
+                }, false);
+                console.error(error);
+            }
+        }
+        
+        async function testarPostEvento() {
+            mostrarCarregando('response-post-evento');
+            const nome = document.getElementById('evento-nome').value;
+            const descricao = document.getElementById('evento-descricao').value;
+            const data = document.getElementById('evento-data').value;
+            
+            if (!nome || !descricao || !data) {
+                mostrarResposta('response-post-evento', {
+                    erro: 'Preencha todos os campos (nome, descrição e data)'
+                }, false);
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/eventos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, descricao, data })
+                });
+                const data_response = await response.json();
+                mostrarResposta('response-post-evento', data_response, response.ok);
+            } catch (error) {
+                mostrarResposta('response-post-evento', {
+                    erro: error.message
+                }, false);
+                console.error(error);
+            }
+        }
+        
+        async function testarGetUsuarios() {
+            mostrarCarregando('response-usuarios');
+            try {
+                const response = await fetch(`${API_BASE}/api/usuarios`);
+                const data = await response.json();
+                mostrarResposta('response-usuarios', data, response.ok);
+            } catch (error) {
+                mostrarResposta('response-usuarios', {
+                    erro: error.message,
+                    dica: 'Verifique se a rota /api/usuarios existe no backend'
+                }, false);
+                console.error(error);
+            }
+        }
+        
+        async function testarPostUsuario() {
+            mostrarCarregando('response-post-usuario');
+            const nome = document.getElementById('usuario-nome').value;
+            const email = document.getElementById('usuario-email').value;
+            
+            if (!nome || !email) {
+                mostrarResposta('response-post-usuario', {
+                    erro: 'Preencha nome e email'
+                }, false);
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/usuarios`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, email })
+                });
+                const data_response = await response.json();
+                mostrarResposta('response-post-usuario', data_response, response.ok);
+            } catch (error) {
+                mostrarResposta('response-post-usuario', {
+                    erro: error.message
+                }, false);
+                console.error(error);
+            }
+        }
+        
+        // Teste automático ao carregar a página
+        window.addEventListener('load', () => {
+            console.log('🧪 Página de Teste carregada. Execute os testes clicando nos botões.');
+            console.log('📍 URL da API:', API_BASE);
+        });
+    </script>
+</body>
+</html>

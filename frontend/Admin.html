@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Administrativa - Check-in</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <header class="main-header">
+        <div class="header-content">
+            <h2 class="logo">Sistema de Eventos</h2>
+            <nav class="main-nav">
+                <ul>
+                    <li id="user-greeting" class="hidden" style="color: var(--primary-color); font-weight: 600;"></li>
+                    <li><a href="eventos.html">Eventos</a></li> 
+                    <li id="minhas-inscricoes-link" class="hidden"><a href="minhas_inscricoes.html">Minhas Inscrições</a></li>
+                    <li id="checkin-link" class="hidden"><a href="#">Check-in</a></li> 
+                    <li id="certificados-link" class="hidden"><a href="certificado.html">Certificados</a></li>
+                    <li id="admin-link" class="hidden"><a href="admin.html" class="active">Área Administrador</a></li>
+                    <li id="login-link"><a href="#" id="open-login-modal-btn">Entrar</a></li>
+                    <li id="register-link"><a href="cadastro.html">Cadastrar</a></li>
+                    <li id="logout-link" class="hidden"><a href="#">Sair</a></li>
+                </ul>
+            </nav>
+            <div class="theme-switcher-container">
+                <label class="switch"><input type="checkbox" id="theme-switcher"><span class="slider round"></span></label>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 100px;">
+        <h1>Área Administrativa</h1>
+        
+        <div id="admin-content">
+            <h2>Selecione o Evento para Check-in</h2>
+            <div class="input-group" style="max-width: 400px; margin-bottom: 30px;">
+                <select id="event-selector" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--input-bg-color); color: var(--text-color);">
+                    <option value="">-- Selecione um Evento --</option>
+                </select>
+            </div>
+            
+            <h2 id="inscription-list-title" class="hidden" style="margin-top: 40px;">Participantes Inscritos</h2>
+            
+            <table id="admin-inscription-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;" class="hidden">
+                <thead>
+                    <tr style="background-color: var(--primary-color); color: #121212;">
+                        <th style="padding: 10px; text-align: left;">Nome</th>
+                        <th style="padding: 10px; text-align: left;">Email</th>
+                        <th style="padding: 10px;">Status</th>
+                        <th style="padding: 10px;">Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-inscription-list">
+                    </tbody>
+            </table>
+            
+            <p id="admin-message" style="margin-top: 20px; text-align: center;"></p>
+        </div>
+
+        <div id="access-denied" class="hidden" style="text-align: center; margin-top: 50px;">
+            <h1 style="color: #dc3545;">Acesso Negado</h1>
+            <p>Você não tem permissão para acessar esta área.</p>
+        </div>
+    </main>
+
+    <div id="login-modal" class="modal-overlay hidden">
+        <div class="modal-content form-container">
+            <span class="close-modal login-close-modal">&times;</span>
+            <form action="#" id="login-form">
+                <h1>Entrar</h1>
+                <div class="input-group"><input type="email" id="login-email" placeholder="Email" required></div>
+                <div class="input-group"><input type="password" id="login-password" placeholder="Senha" required></div>
+                <a href="#">Esqueceu sua senha?</a>
+                <button type="submit">Entrar</button>
+                <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="Logicafrontend.js"></script>
+</body>
+</html>
